@@ -1,0 +1,38 @@
+CREATE TABLE Requester(
+    RID CHAR(9) PRIAMRY KEY,
+    RNAME CHAR(25),
+    DID INT
+);
+
+CREATE TABLE DJ(
+    DID CHAR(9) PRIMARY KEY,
+    DNAME CHAR(25),
+);
+
+CREATE TABLE Song(
+    SID CHAR(9),
+    SNAME CHAR(25),
+    VERNUM INT
+);
+
+CREATE TABLE Contributor(
+    CID CHAR(9),
+    NAME CHAR(25),
+);
+
+CREATE TABLE Queues(
+    RID CHAR(9),
+    SID CHAR(9),
+    PRIAMRY KEY(RID, DID, SID),
+    HIGH_PRIORITY INT,
+    FOREGIN KEY (RID) REFERENCES Requester(RID),
+    FOREGIN KEY (DID) REFERENCES DJ(DID),
+    FOREGIN KEY (SID) REFERENCES Song(SID),
+)
+
+CREATE TABLE Contributes(
+    SID CHAR(9),
+    CID CHAR(9),
+    PRIMARY KEY(SID, CID),
+    Contirbution CHAR(50)
+);
