@@ -10,7 +10,7 @@ CREATE TABLE DJ(
 );
 
 CREATE TABLE Song(
-    SID CHAR(9),
+    SID VARCHAR(10),
     SNAME CHAR(25),
     VERNUM INT
 );
@@ -22,7 +22,7 @@ CREATE TABLE Contributor(
 
 CREATE TABLE Queues(
     RID CHAR(9),
-    SID CHAR(9),
+    SID VARCHAR(10),
     PRIAMRY KEY(RID, DID, SID),
     HIGH_PRIORITY INT,
     FOREGIN KEY (RID) REFERENCES Requester(RID),
@@ -31,7 +31,7 @@ CREATE TABLE Queues(
 )
 
 CREATE TABLE Contributes(
-    SID CHAR(9),
+    SID VARCHAR(10),
     CID CHAR(9),
     PRIMARY KEY(SID, CID),
     Contirbution CHAR(50)
