@@ -23,7 +23,7 @@ VALUES( T12,'Toxic', 12), -- brittney spears
 ( DGA100, 'Dumbest Girl Alive', 100), -- 100 gecs
 ( S120, 'Startafight', 120), -- joey valance and brae
 ( DN12, 'Dance Now', 12), -- JID
-( JIN136, 'JINXTRO', 136), -nahncentz.
+( JIN136, 'JINXTRO', 136), --nahncentz.
 ( NRM453, 'No Role Modelz', 453), -- J. Cole
 ( AGDH2022, 'All Good in Da hood', 2022), -- DaDood
 ( D107, 'Doja', 107), -- Central Cee
