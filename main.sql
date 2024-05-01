@@ -1,0 +1,44 @@
+CREATE TABLE Requester (
+    RID CHAR(9) PRIMARY KEY,
+    Name VARCHAR(100),
+    DID INT,
+    FOREIGN KEY (DID) REFERENCES DJ(DID)
+);
+
+CREATE TABLE DJ (
+    DID INT PRIMARY KEY,
+    Name VARCHAR(100)
+);
+
+CREATE TABLE Song (
+    SID VARCHAR(10) PRIMARY KEY,
+    Name VARCHAR(100),
+    Artist VARCHAR(100),
+    Version VARCHAR(50),
+    KaraokeFileID VARCHAR(10)
+);
+
+CREATE TABLE Contributor (
+    CID CHAR(6) PRIMARY KEY,
+    Name VARCHAR(100)
+);
+
+CREATE TABLE Contributes (
+    SID VARCHAR(10),
+    CID CHAR(6),
+    Contribution VARCHAR(100),
+    PRIMARY KEY (SID, CID),
+    FOREIGN KEY (SID) REFERENCES Song(SID),
+    FOREIGN KEY (CID) REFERENCES Contributor(CID)
+);
+
+CREATE TABLE Queues (
+    QueueID INT AUTO_INCREMENT PRIMARY KEY,
+    RID CHAR(9),
+    SID VARCHAR(10),
+    Priority INT,
+    QueueType ENUM('Free', 'Accelerated'),
+    FOREIGN KEY (RID) REFERENCES Requester(RID),
+    FOREIGN KEY (SID) REFERENCES Song(SID)
+);
+

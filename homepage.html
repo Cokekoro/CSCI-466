@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karaoke Legends</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #4caf50;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+        input[type="radio"] {
+            margin: 0 10px;
+        }
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Karaoke Legends</h1>
+        <p>Please select your role:</p>
+        <form id="roleForm" method="post">
+            <input type="radio" id="dj" name="role" value="dj">
+            <label for="dj">DJ</label>
+            <input type="radio" id="user" name="role" value="user">
+            <label for="user">User</label><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("roleForm").addEventListener("submit", function(event) {
+            var role = document.querySelector('input[name="role"]:checked').value;
+            if (role === "dj") {
+                window.location.href = "dj_interface.html"; // Redirect to DJ interface
+            } else if (role === "user") {
+                window.location.href = "https://students.cs.niu.edu/~z2014189/user.php"; // Redirect to User interface
+            }
+            event.preventDefault(); // Prevent default form submission
+        });
+    </script>
+</body>
+</html>
