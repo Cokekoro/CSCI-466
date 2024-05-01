@@ -32,12 +32,12 @@ try {
     }
     
     // Function to insert into Queues table
-    function insertIntoQueue($pdo, $rid, $sid, $queueType, $priority) {
-        $sql = "INSERT INTO Queues (RID, SID, QueueType, Priority) VALUES (:rid, :sid, :queueType, :priority)";
+    function insertIntoQueue($pdo, $rid, $sid, $priority) {
+        $sql = "INSERT INTO Queues (RID, S_ID, Priority) VALUES (:rid, :sid, :priority)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':rid', $rid, PDO::PARAM_STR);
         $stmt->bindParam(':sid', $sid, PDO::PARAM_STR);
-        $stmt->bindParam(':queueType', $queueType, PDO::PARAM_STR);
+        //$stmt->bindParam(':queueType', $queueType, PDO::PARAM_STR);
         $stmt->bindParam(':priority', $priority, PDO::PARAM_INT);
         return $stmt->execute();
     }
@@ -93,7 +93,7 @@ try {
             $sid = $_POST['songId'];
             $queueType = $_POST['queueType'];
             $priority = ($queueType == 'Accelerated') ? 1 : 0; // Set priority based on queue type
-            if (insertIntoQueue($pdo, $rid, $sid, $queueType, $priority)) {
+            if (insertIntoQueue($pdo, $rid, $sid, $priority)) {
                 echo "<p>Your song request has been added to the $queueType queue.</p>";
             } else {
                 echo "<p>Error adding song request to the queue.</p>";
