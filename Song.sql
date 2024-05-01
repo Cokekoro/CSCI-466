@@ -1,4 +1,4 @@
-INSERT INTO Song (SID, Name, Artist, KaraokeFileID, Version)
+INSERT INTO Song (S_ID, Name, Artist, KaraokeFileID, Version)
 VALUES
     ('S001', 'Yesterday', 'The Beatles', 'KFI001', 'Original'),
     ('S002', 'Bohemian Rhapsody', 'Queen', 'KFI002', 'Original'),
