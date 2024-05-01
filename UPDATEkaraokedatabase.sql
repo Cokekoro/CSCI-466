@@ -17,13 +17,13 @@ CREATE TABLE DJ(
     PRIMARY KEY (DID)
 );
 
-CREATE TABLE Song(
-    S_ID VARCHAR(10),
-    SNAME CHAR(25),
-    VERNUM INT,
-    PRIMARY KEY (S_ID)
+CREATE TABLE Song (
+    SID VARCHAR(10) PRIMARY KEY,
+    Name VARCHAR(100),
+    Artist VARCHAR(100),
+    Version VARCHAR(50),
+    KaraokeFileID VARCHAR(10)
 );
-
 CREATE TABLE Contributor(
     CID CHAR(9),
     CNAME CHAR(25),
