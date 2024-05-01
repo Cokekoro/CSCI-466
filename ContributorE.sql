@@ -1,4 +1,4 @@
-INSERT INTO Contributor (CID, Name)
+INSERT INTO Contributor (CID, CNAME)
 VALUES
     ('C001', 'Paul McCartney'),
     ('C002', 'John Lennon'),
