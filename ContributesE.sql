@@ -1,4 +1,4 @@
-INSERT INTO Contributes (SID, CID, Contribution)
+INSERT INTO Contributes (SID, CID, Contirbution)
 VALUES
     ('S001', 'C001', 'Singer, Guitarist, Songwriter'),
     ('S001', 'C002', 'Singer, Guitarist, Songwriter'),
