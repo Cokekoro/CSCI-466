@@ -41,9 +41,11 @@ CREATE TABLE Queues(
     FOREIGN KEY (S_ID) REFERENCES Song(S_ID)
 );
 
-CREATE TABLE Contributes(
-    SID VARCHAR(10),
-    CID CHAR(9),
-    PRIMARY KEY(SID, CID),
-    Contirbution CHAR(50)
+CREATE TABLE Contributes (
+    S_ID VARCHAR(10),
+    CID CHAR(6),
+    Contribution VARCHAR(100),
+    PRIMARY KEY (SID, CID),
+    FOREIGN KEY (SID) REFERENCES Song(SID),
+    FOREIGN KEY (CID) REFERENCES Contributor(CID)
 );
