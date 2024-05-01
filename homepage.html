@@ -62,9 +62,9 @@
         document.getElementById("roleForm").addEventListener("submit", function(event) {
             var role = document.querySelector('input[name="role"]:checked').value;
             if (role === "dj") {
-                window.location.href = "dj_interface.html"; // Redirect to DJ interface
+                window.location.href = "dj.php"; // Redirect to DJ interface
             } else if (role === "user") {
-                window.location.href = "https://students.cs.niu.edu/~z2014189/user.php"; // Redirect to User interface
+                window.location.href = "user.php"; // Redirect to User interface
             }
             event.preventDefault(); // Prevent default form submission
         });
