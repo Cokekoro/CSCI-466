@@ -24,21 +24,23 @@ try {
     
     // Function to insert requester into Requester table
     function insertRequester($pdo, $name, $rid) {
-        $sql = "INSERT INTO Requester (RID, Name) VALUES (:rid, :name)";
+        $sql = "INSERT INTO Requester (RID, RNAME) VALUES (:rid, :rname)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':rid', $rid, PDO::PARAM_STR);
-        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':rname', $name, PDO::PARAM_STR);
         return $stmt->execute();
     }
     
     // Function to insert into Queues table
     function insertIntoQueue($pdo, $rid, $sid, $priority) {
-        $sql = "INSERT INTO Queues (RID, S_ID, Priority) VALUES (:rid, :sid, :priority)";
+        $did = "987654321";
+        $sql = "INSERT INTO Queues(RID, DID, S_ID, PRIO) VALUES (:rid, :did, :s_id, :prio)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':rid', $rid, PDO::PARAM_STR);
-        $stmt->bindParam(':sid', $sid, PDO::PARAM_STR);
+        $stmt->bindParam(':did', $did, PDO::PARAM_STR);
+        $stmt->bindParam(':s_id', $sid, PDO::PARAM_STR);
         //$stmt->bindParam(':queueType', $queueType, PDO::PARAM_STR);
-        $stmt->bindParam(':priority', $priority, PDO::PARAM_INT);
+        $stmt->bindParam(':prio', $priority, PDO::PARAM_INT);
         return $stmt->execute();
     }
     
@@ -70,9 +72,11 @@ try {
             echo "<form action='' method='POST'>";
             echo "<input type='text' name='name' placeholder='Your Name'><br>";
             echo "<input type='text' name='rid' placeholder='Your RID'><br>";
+            echo "<input type='checkbox' id='prio' name='prio' value='true'>";
+            echo "<label for='prio'> Enter ID and check if returning user. </label><br>";
             echo "<select name='songId'>";
             foreach ($songs as $song) {
-                echo "<option value='{$song['SID']}'>{$song['Name']} by {$song['Artist']}</option>";
+                echo "<option value='{$song['S_ID']}'>{$song['Name']} by {$song['Artist']}</option>";
             }
             echo "</select><br>";
             echo "<select name='queueType'>";
@@ -89,7 +93,7 @@ try {
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['name']) && isset($_POST['rid']) && isset($_POST['songId']) && isset($_POST['queueType'])) {
         $name = $_POST['name'];
         $rid = $_POST['rid'];
-        if (insertRequester($pdo, $name, $rid)) {
+        if ($_POST['prio']=='true') {
             $sid = $_POST['songId'];
             $queueType = $_POST['queueType'];
             $priority = ($queueType == 'Accelerated') ? 1 : 0; // Set priority based on queue type
@@ -98,10 +102,18 @@ try {
             } else {
                 echo "<p>Error adding song request to the queue.</p>";
             }
-        } else {
-            echo "<p>Error adding user to the requester table.</p>";
+        } else if (insertRequester($pdo, $name, $rid)) {
+            $sid = $_POST['songId'];
+            $queueType = $_POST['queueType'];
+            $priority = ($queueType == 'Accelerated') ? 1 : 0; // Set priority based on queue type
+            if (insertIntoQueue($pdo, $rid, $sid, $priority)) {
+                echo "<p>Your song request has been added to the $queueType queue.</p>";
+            } else {
+                echo "<p>Error adding song request to the queue.</p>";
+            }
         }
     }
     ?>
 </body>
 </html>
+
