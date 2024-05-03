@@ -6,19 +6,24 @@ table, th, td {
 }
 </style>
 <?php
+$host = "courses";
+$dbname = "z1903538";
+$username = "z1903538";
+$password = "2002Jun27";
 try {
-    $dsn = "mysql:host=courses;dbname=z1903538";
-    $pdo = new PDO ($dsn, "z1903538", "2002Jun27");
+    $dsn = "mysql:host=$host;dbname=$dbname";
+    $pdo = new PDO ($dsn, $username, $password);
 } catch (PDOexception $e) {
     echo "Connection to database failed: " . $e->getMessage();
 }
-$sqlLP = "SELECT RID, S_ID FROM Queues WHERE PRIO=0";
+$sqlLP = "SELECT RID, Queues.S_ID, Name FROM Queues, Song WHERE PRIO=0 AND Queues.S_ID=Song.S_ID";
 $result = $pdo->query($sqlLP);
 $row = $result->fetchAll(PDO::FETCH_NUM);
 echo 'Queue:';
 echo '<br><table>';
 echo '<tr><th>RID</th>';
 echo '<th>SID</th>';
+echo '<th>Song Name</th>';
 echo '</tr>';
 foreach ($row as $key => $arr) {
     echo '<tr>';
@@ -29,13 +34,14 @@ foreach ($row as $key => $arr) {
 }
 echo '</table><br>';
 
-$sqlHP = "SELECT RID, S_ID FROM Queues WHERE PRIO=1";
+$sqlHP = "SELECT RID, Queues.S_ID,Name FROM Queues, Song WHERE PRIO=1 AND Queues.S_ID=Song.S_ID";
 $result = $pdo->query($sqlHP);
 $row = $result->fetchAll(PDO::FETCH_NUM);
 echo 'Priority Queue:';
 echo '<br><table>';
 echo '<tr><th>RID</th>';
 echo '<th>SID</th>';
+echo '<th>Song Name</th>';
 echo '</tr>';
 foreach ($row as $key => $arr) {
     echo '<tr>';
@@ -66,5 +72,5 @@ echo '</table><br>';
     }
     ?>
 </form>
-<p> Refresh for song to be removed from table. </p>
+<p> Refresh to update table. </p>
 </html>
