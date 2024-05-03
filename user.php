@@ -1,9 +1,8 @@
 <?php
 $hostname = "courses"; 
-$dbname = "z2014189"; 
-$username = "z2014189"; 
-$password = "2002Sep17"; 
-
+$dbname = "z1903538"; 
+$username = "z1903538"; 
+$password = "2002Jun27"; 
 try {
     
     $dsn = "mysql:host=$hostname;dbname=$dbname";
@@ -116,4 +115,3 @@ try {
     ?>
 </body>
 </html>
-
