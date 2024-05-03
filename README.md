@@ -1,2 +1,9 @@
 # CSCI-466
-Repo for Karoke Assignments
+In order to intialize the database run the file karaokedatabaseFIN.sql in mariaDB. <br>
+homepage.html links together DJ.php and user.php
+Files Necessary for the project:
+<ul>
+<li>
+  
+</li>
+</ul>
