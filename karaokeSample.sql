@@ -108,7 +108,7 @@ INSERT INTO Requester(RID, RNAME)
     ('666666666', 'Larry'),
     ('777777777', 'David'),
     ('888888888', 'Joe'),
-    ('999999999', 'Brandon'),
+    ('999999999', 'Brandon');
 -- Establish Base DJ
 INSERT INTO DJ(DID, DNAME)
     VALUES('987654321','DJ Tommy');
