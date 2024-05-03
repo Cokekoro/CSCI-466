@@ -3,6 +3,8 @@ In order to intialize the database run the file karaokedatabaseFIN.sql then the 
 homepage.html links together DJ.php and user.php <br>
 Ensure to change the variables $host, $dbname, $username, and $password in both DJ.php and user.php <br>
 https://students.cs.niu.edu/~z1903538/homepage.html <br>
+https://students.cs.niu.edu/~z1903538/user.php <br>
+https://students.cs.niu.edu/~z1903538/dj.php <br>
 Files necessary for the project:
 <ul>
 <li>
